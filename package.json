@@ -5,13 +5,20 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "nodemon ../Blog/server/index.js"
   },
   "dependencies": {
+    "axios": "^1.2.5",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "firebase": "^9.16.0",
+    "mysql": "^2.18.1",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vuefire": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

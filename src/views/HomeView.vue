@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import cardVue from '@/components/UI/card.vue';
 import navbar from '@/components/UI/navbar.vue'
 export default {
@@ -17,14 +18,7 @@ export default {
  
   data() {
     return {
-      posts: [
-        {id: 1, heading: 'Запись 1', text: 'Начало жизни'},
-        {id: 2, heading: 'Запись 2', text: 'Продожение жизни'},
-        {id: 3, heading: 'Запись 3', text: 'Великое продолжение жизни'},
-        {id: 4, heading: 'Запись 4', text: 'Пик жизни'},
-        {id: 5, heading: 'Запись 5', text: 'Угасание жизни'},
-        {id: 6, heading: 'Запись 6', text: 'Смерть'},
-      ],
+      posts: [],
       searchQuery: '',
       warning: 'Совпадений не найдено',
     }
@@ -33,23 +27,25 @@ export default {
     closeSearch() {
       this.visibleFalse = true
     },
-    initPages() {
-      this.newposts = this.posts
-    },
     abc(find) {
         this.searchQuery = find
-      },
-  },
+    }
+  }, 
   computed: {
     searchedPosts() {
        if (this.searchQuery == '') {
         return this.posts
       } else if (this.posts.filter(posts => posts.id == this.searchQuery).length == 0) {
-        return null
- } else {
-  return this.posts.filter(posts => posts.id == this.searchQuery)
+        return this.posts
+      } else {
+        return this.posts.filter(posts => posts.id == this.searchQuery) 
  }
     }
+  },
+  mounted() {
+    axios
+      .get('http://localhost:8081/posts')
+      .then(response => (this.posts = response.data));
   }
 
 }
