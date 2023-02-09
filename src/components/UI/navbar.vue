@@ -1,8 +1,8 @@
 <template>
     <div class="navbar-nav">
         <router-link class="nav-link" to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой"></router-link>
-        <router-link class="nav-link" to="/"><img class="navbar-nav_item" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
-        <router-link class="nav-link" to="/about"><img class="navbar-nav_item" src="@/components/UI/img/info.svg" alt="Инфо"></router-link>
+        <router-link class="nav-link" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
+        <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Инфо"></router-link>
     </div>
     <form @submit.prevent>
         <input type="number" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
@@ -20,6 +20,7 @@ export default {
         return {
             visible: false,
             find: '',
+            show: true,
         }
     },
     methods: {
@@ -28,11 +29,22 @@ export default {
         },
         inputdata() {
                 this.$emit('search', this.find)
-            }
+
+            },
         },
 }
 </script>
 <style>
+
+@keyframes search {
+    0% {
+       transform: translate(0px,-100px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -72,6 +84,7 @@ export default {
 .navbar-input {
     margin: 0 auto;
     display: block;
+    position: fixed;
     border: 2px solid black;
     border-radius: 10px;
     padding: 15px;
@@ -81,6 +94,9 @@ export default {
     -moz-appearance: textfield;
 	-webkit-appearance: textfield;
 	appearance: textfield;
+    animation: search 0.3s;
+    top: 3%;
+    left: 30%;
 }
 
 .navbar-input::-webkit-outer-spin-button,

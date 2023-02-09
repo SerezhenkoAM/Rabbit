@@ -1,26 +1,29 @@
 <template>
   <div class="home">
     <navbar @search="abc"></navbar>
-    <cardVue v-bind:posts="searchedPosts" v-bind:visibleFalse="visibleFalse"></cardVue>
+    <cardVue class="cardVue" v-bind:posts="searchedPosts" v-if="searchedPosts" v-bind:visibleFalse="visibleFalse"></cardVue>
+    <warning_message class="warning_message" v-else></warning_message>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import warning_message from '@/components/UI/warning_message.vue';
 import cardVue from '@/components/UI/card.vue';
 import navbar from '@/components/UI/navbar.vue'
 export default {
   name: 'HomeView',
   components: {
     cardVue,
-    navbar
+    navbar,
+    warning_message
   },
  
   data() {
     return {
       posts: [],
       searchQuery: '',
-      warning: 'Совпадений не найдено',
+      isPostsLoadnig: true,
     }
   },
   methods: {
@@ -28,17 +31,21 @@ export default {
       this.visibleFalse = true
     },
     abc(find) {
-        this.searchQuery = find
+        this.searchQuery = find;
+
     }
+  },
+  watch: {
+
   }, 
   computed: {
     searchedPosts() {
        if (this.searchQuery == '') {
         return this.posts
       } else if (this.posts.filter(posts => posts.id == this.searchQuery).length == 0) {
-        return this.posts
+          return false
       } else {
-        return this.posts.filter(posts => posts.id == this.searchQuery) 
+        return this.posts.filter(posts => posts.id == this.searchQuery)
  }
     }
   },
@@ -50,3 +57,7 @@ export default {
 
 }
 </script>
+
+<style>
+
+</style>

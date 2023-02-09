@@ -39,7 +39,6 @@ app.get('/posts', (req,res) => {
 
 
 
-
 /* connection.end(() => {
     console.log('База данных сброшена')
 });
