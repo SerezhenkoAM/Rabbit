@@ -1,8 +1,8 @@
 <template>
-    <div class="navbar-nav">
-        <router-link class="nav-link" to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой"></router-link>
-        <router-link class="nav-link" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
-        <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Инфо"></router-link>
+    <div class="navbar-nav" v-bind:class="{navbar_smaller: show}">
+        <router-link class="nav-link"  to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой" @click="openAbout()"></router-link>
+        <router-link class="nav-link" v-bind:class="{notvisible : show}" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
+        <router-link class="nav-link" v-bind:class="{notvisible : show}" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Инфо" @click="openAbout()"></router-link>
     </div>
     <form @submit.prevent>
         <input type="number" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
@@ -20,7 +20,8 @@ export default {
         return {
             visible: false,
             find: '',
-            show: true,
+            show: false,
+            height: 100,
         }
     },
     methods: {
@@ -31,6 +32,12 @@ export default {
                 this.$emit('search', this.find)
 
             },
+        openAbout() {
+            this.show = !this.show
+            if (this.show == true) {
+                this.height = 150;
+            }
+        }
         },
 }
 </script>
@@ -80,6 +87,16 @@ export default {
     filter: drop-shadow(-7px 6px 7px black);
 
 }
+
+.notvisible {
+    display: none;
+}
+
+.navbar_smaller {
+    height: 100px;
+    top: 50%;
+}
+
 
 .navbar-input {
     margin: 0 auto;

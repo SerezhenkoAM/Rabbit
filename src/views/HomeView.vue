@@ -10,7 +10,7 @@
 import axios from 'axios'
 import warning_message from '@/components/UI/warning_message.vue';
 import cardVue from '@/components/UI/card.vue';
-import navbar from '@/components/UI/navbar.vue'
+import navbar from "@/components/UI/navbar.vue"
 export default {
   name: 'HomeView',
   components: {
