@@ -1,8 +1,8 @@
 <template>
   <div class="about">
-    <navbar></navbar>
+    <navbar_only_to_home></navbar_only_to_home>
     <div class="header">
-      <img src="" alt="" class="person-image">
+      <img src="@/components/UI/img/face.jpg" alt="" class="person-image">
     </div>
     <div class="num-one">
       <p class="nume-one_text">1</p>
@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import navbar from '@/components/UI/navbar.vue';
+import navbar_only_to_home from "@/components/UI/navbar_only_to_home.vue"
 
 export default {
   name: 'AboutView',
   components: {
-    navbar
+    navbar_only_to_home
 },
  
   data() {
@@ -56,6 +56,11 @@ export default {
 
 </script>
 <style>
+
+body {
+  padding: 0;
+  margin: 0;
+} 
 
 @font-face {
 	font-family: 'DinPro'; 
@@ -71,19 +76,19 @@ export default {
 .header {
   width: 100%;
   height: 200px;
-  background-image: url("");
+  background-image: url("@/components/UI/img/background.jpg");
   backdrop-filter: blur(10px);
-  padding-top: 3%;
+  padding-top: 35px;
 }
 
 .person-image {
   display: block;
+  margin: 0px auto;
+  text-align: center;
   width: 200px;
   height: 130px;
   border: 1px solid #000000;
   border-radius: 50px; 
-  object-fit: cover;
-  margin: 10px auto;
 }
 
 .num-one {
@@ -132,5 +137,40 @@ export default {
 .card-text__about {
   font-size: 1.1rem;
   text-align: justify;
+}
+
+@media screen and (max-width: 1000px) {
+    .card-body_p__about {
+        font-size: 1.2rem;
+    }
+
+    .card-body_h1__about {
+        font-size: 2.5rem;
+    }
+
+    .card-block__about {
+        padding: 20px 60px;
+
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .card-body_p__about {
+        font-size: 1.1rem;
+    }
+
+    .card-body_h1__about {
+        font-size: 1.9rem;
+    }
+
+    .card-block__about {
+        width: 80%;
+        margin: 0 auto;
+        padding: 10px 15px;
+
+    }
+    .person-image {
+    margin-top: 25px;
+  }
 }
 </style>

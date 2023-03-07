@@ -1,65 +1,71 @@
 <template>
-    <div class="navbar-nav" v-bind:class="{navbar_smaller: show}">
-        <router-link class="nav-link"  to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой" @click="openAbout()"></router-link>
-        <router-link class="nav-link" v-bind:class="{notvisible : show}" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
-        <router-link class="nav-link" v-bind:class="{notvisible : show}" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Инфо" @click="openAbout()"></router-link>
+    <div class="navbar-nav" @keyup.esc="openSearch()">
+        <router-link class="nav-link" to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой" @click="reloadPage()"></router-link>
+        <router-link class="nav-link" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
+        <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Писатель_инфо"></router-link>
     </div>
     <form @submit.prevent>
-        <input type="number" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
+        <transition name="fade">
+            <input type="number" @keyup.esc="openSearch()" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
+        </transition>
     </form>
 </template>
 <script>
 export default {
     name: 'navbar-element',
     props: {
-        close: Boolean,
-        posts: Array
-
+        searchVisible: Boolean,
     },
     data() {
         return {
             visible: false,
             find: '',
             show: false,
-            height: 100,
         }
     },
     methods: {
         openSearch() {
-            this.visible = !this.visible
+            this.visible = !this.visible 
+            this.find = ""
+            this.$emit('search', this.find)
         },
         inputdata() {
-                this.$emit('search', this.find)
-
-            },
-        openAbout() {
-            this.show = !this.show
-            if (this.show == true) {
-                this.height = 150;
-            }
-        }
+            this.$emit('search', this.find)
         },
+        reloadPage() {
+            window.location.reload()
+        }
+    },
+    watch: {
+        searchVisible() {
+        }
+    }
 }
 </script>
 <style>
 
-@keyframes search {
-    0% {
-       transform: translate(0px,-100px);
-    }
-    100% {
-        transform: translate(0px,0px);
-    }
+.fade-enter-from {
+    transform: translateY(-100px);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
+.fade-enter-to {
+    transform: translateY(0px);
 }
 
-.fade-enter-from,
+.fade-enter-active {
+    transition: all 0.2s;
+}
+
+.fade-leave-from {
+    transform: translateY(0px);
+}
+
 .fade-leave-to {
-    opacity: 0;
+    transform: translateY(-100px);
+}
+
+.fade-leave-active {
+  transition: all 0.4s;
 }
 
 .navbar-nav {
@@ -88,19 +94,9 @@ export default {
 
 }
 
-.notvisible {
-    display: none;
-}
-
-.navbar_smaller {
-    height: 100px;
-    top: 50%;
-}
-
-
 .navbar-input {
-    margin: 0 auto;
     display: block;
+    margin: 0 auto;
     position: fixed;
     border: 2px solid black;
     border-radius: 10px;
@@ -111,7 +107,7 @@ export default {
     -moz-appearance: textfield;
 	-webkit-appearance: textfield;
 	appearance: textfield;
-    animation: search 0.3s;
+    /* animation: search 0.3s; */
     top: 3%;
     left: 30%;
 }
@@ -133,11 +129,39 @@ export default {
 
 @media screen and (max-width: 1000px) { 
 
+    .fade-enter-from {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+
+    .fade-enter-to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    .fade-enter-active {
+        transition: all 0.5s;
+    }
+
+    .fade-leave-from {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    .fade-leave-to {
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    .fade-leave-active {
+    transition: all 0.5s;
+    }
+
     .navbar-nav { 
         display: grid;
         grid-column: 20px;
         padding: 20px 0;
-        margin: 0 auto;
+        margin: 15px auto;
         position: static;
         width: 90%;
         height: 10%;
@@ -150,8 +174,11 @@ export default {
         font-size: 20px;
         display: block;
         border: 2px solid black;
-        border-radius: 15px;
+        border-radius: 10px;
         padding: 10px;
+        top: 18%;
+        left: 23%;
+        width: 50vw;
     }
 
     .nav-button {

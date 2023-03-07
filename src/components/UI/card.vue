@@ -19,6 +19,27 @@ export default {
 </script>
 
 <style>
+
+/* @keyframes slide {
+  0%{
+    transform: translateY(-10000px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+  
+}
+
+@keyframes slide-left {
+  0%{
+    transform: translateY(10000px);
+  }
+  100% {
+    transform: translate(0px);
+  }
+  
+} */
+
 @font-face {
 	font-family: 'DinPro'; 
 	src: url(@/components/UI/font/dinpro.otf); 
@@ -39,6 +60,14 @@ export default {
 
     /*Удалить при испоьлзовании в проекте*/
     margin-top: 50px;
+}
+
+.card-block:nth-child(even) {
+    animation: slide-left 2s;
+}
+
+.card-block:nth-child(odd) {
+    animation: slide-left 2s;
 }
 
 .card-body_h1 {
