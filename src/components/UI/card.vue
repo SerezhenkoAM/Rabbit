@@ -18,27 +18,17 @@ export default {
 }
 </script>
 
-<style>
+<style> 
 
-/* @keyframes slide {
-  0%{
-    transform: translateY(-10000px);
+@keyframes opacity {
+  from {
+    opacity: 0;
   }
-  100% {
-    transform: translateY(0px);
+  to {
+    opacity: 1;
   }
-  
 }
 
-@keyframes slide-left {
-  0%{
-    transform: translateY(10000px);
-  }
-  100% {
-    transform: translate(0px);
-  }
-  
-} */
 
 @font-face {
 	font-family: 'DinPro'; 
@@ -57,19 +47,19 @@ export default {
     padding: 30px 80px;
     border: 2px solid black;
     border-radius: 25px;
-
+    animation: opacity 1s ease-in-out;
     /*Удалить при испоьлзовании в проекте*/
     margin-top: 50px;
 }
 
-.card-block:nth-child(even) {
+/*  .card-block:nth-child(even) {
     animation: slide-left 2s;
 }
 
 .card-block:nth-child(odd) {
     animation: slide-left 2s;
-}
-
+} 
+ */
 .card-body_h1 {
     color: black;
     text-align: left;

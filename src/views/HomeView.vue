@@ -1,5 +1,5 @@
 <template>
-  <div class="home" @click="close_esc" >
+  <div class="home" @click="close_esc">
     <navbar @search="abc" v-bind:searchVisible="searchVisible"></navbar>
     <cardVue class="cardVue" v-bind:posts="searchedPosts" v-if="searchedPosts" v-bind:visibleFalse="visibleFalse"></cardVue>
     <warning_message class="warning_message" v-else></warning_message>
@@ -154,6 +154,47 @@ export default {
 
 .btn__back:hover:after {
   width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .btn__next {
+  box-shadow: inset 0 0 white;
+}
+
+.btn__next:hover {
+  box-shadow: none;
+  cursor: none;
+  color: black;
+}
+
+.btn__back {
+  position: relative;
+  background: rgb(255, 255, 255);
+  z-index: none;
+  transition: none;
+}
+.btn__back:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.btn__back::after {
+  content: " ";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  background: white;
+  color: black;
+  right: 0;
+  top: 0;
+  border-radius: 5px;
+  z-index: -1;
+  transition: none;
+}
+
+.btn__back:hover:after {
+  width: 100%;
+}
 }
 
 

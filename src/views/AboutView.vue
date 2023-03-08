@@ -62,6 +62,15 @@ body {
   margin: 0;
 } 
 
+@keyframes opacity {
+  from {
+    opacity: 0;
+  } 
+  to {
+    opacity: 1;
+  }
+}
+
 @font-face {
 	font-family: 'DinPro'; 
 	src: url(@/components/UI/font/dinpro.otf); 
@@ -72,6 +81,9 @@ body {
 	src: url(@/components/UI/font/proximanova_bold.otf); 
 }
 
+.about {
+  animation: opacity 0s;
+}
 
 .header {
   width: 100%;
@@ -137,6 +149,10 @@ body {
 .card-text__about {
   font-size: 1.1rem;
   text-align: justify;
+}
+
+.navbar_to_home {
+  animation: slideInLeft .7s ;
 }
 
 @media screen and (max-width: 1000px) {

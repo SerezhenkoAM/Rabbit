@@ -1,8 +1,8 @@
 <template>
     <div class="navbar-nav" @keyup.esc="openSearch()">
-        <router-link class="nav-link" to="/"><img class="navbar-nav_item" src="@/components/UI/img/home_black.png" alt="Домой" @click="reloadPage()"></router-link>
+        <router-link class="nav-link" to="/"><img class="navbar-nav_item navbar-nav_item__home" src="@/components/UI/img/home_black.png" alt="Домой" @click="reloadPage()"></router-link>
         <router-link class="nav-link" to="/"><img class="navbar-nav_item navbar-nav_item__search" src="@/components/UI/img/search.png" alt="Поиск" @click="openSearch()"></router-link>
-        <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Писатель_инфо"></router-link>
+        <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Писатель_инфо" @click="toUp()"></router-link>
     </div>
     <form @submit.prevent>
         <transition name="fade">
@@ -34,7 +34,10 @@ export default {
         },
         reloadPage() {
             window.location.reload()
-        }
+        },
+        toUp() {
+            window.scrollTo(0,0);
+        },
     },
     watch: {
         searchVisible() {
@@ -44,29 +47,69 @@ export default {
 </script>
 <style>
 
+@keyframes height {
+    from{
+        height: 13px;
+        height: 100px;
+        top: 58%;
+        padding-top: 20px;
+        height: 65px;
+
+    }
+    to {
+        height: 350px;
+        padding: 0;
+        top: 25%;
+        height: 350px;
+    }
+}
+
+@keyframes test {
+    from {
+        padding-bottom: 30px
+    }
+    to {
+        padding-bottom: 0px
+    }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .fade-enter-from {
-    transform: translateY(-100px);
-}
+        transform: translate(0,-200%);
+        opacity: 0;
+    }
 
-.fade-enter-to {
-    transform: translateY(0px);
-}
+    .fade-enter-to {
+        transform: translate(0,0);
+        opacity: 1;
+    }
 
-.fade-enter-active {
-    transition: all 0.2s;
-}
+    .fade-enter-active {
+        transition: all 0.4s;
+    }
 
-.fade-leave-from {
-    transform: translateY(0px);
-}
+    .fade-leave-from {
+        transform: translate(0,0);
+        opacity: 1;
+    }
 
-.fade-leave-to {
-    transform: translateY(-100px);
-}
+    .fade-leave-to {
+        transform: translate(0,-200%);
+        opacity: 0;
+    }
 
-.fade-leave-active {
-  transition: all 0.4s;
-}
+    .fade-leave-active {
+     transition: all 0.4s; 
+    }
+
 
 .navbar-nav {
     text-align: center;
@@ -84,6 +127,7 @@ export default {
     grid-template-columns: 1fr;
     justify-content: space-around;
     align-items: center;
+    animation: height .7s;
 }
 
 .navbar-nav_item {
@@ -91,7 +135,12 @@ export default {
     height: 40px;
     margin: 0 auto;
     filter: drop-shadow(-7px 6px 7px black);
+    animation: opacity 2s;
 
+}
+
+.navbar-nav_item__home {
+    animation: none !important;
 }
 
 .navbar-input {
@@ -107,7 +156,7 @@ export default {
     -moz-appearance: textfield;
 	-webkit-appearance: textfield;
 	appearance: textfield;
-    /* animation: search 0.3s; */
+    animation: fade 0.3s; 
     top: 3%;
     left: 30%;
 }
@@ -165,8 +214,8 @@ export default {
         position: static;
         width: 90%;
         height: 10%;
-        grid-template-columns: repeat(3, 1fr);
-
+        grid-template-columns: repeat(3, 33%);
+        animation: slide_top .7s;
     }
 
     .navbar-input {
