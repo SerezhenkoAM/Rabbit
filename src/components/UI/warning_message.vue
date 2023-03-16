@@ -23,6 +23,7 @@ export default {
 }
 
 @media screen and (max-width: 1300px) {
+    
         .warning_wrap {
         display: block;  
         width: 70%; 

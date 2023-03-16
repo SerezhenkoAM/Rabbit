@@ -3,7 +3,7 @@
     <navbar @search="abc" v-bind:searchVisible="searchVisible"></navbar>
     <cardVue class="cardVue" v-bind:posts="searchedPosts" v-if="searchedPosts" v-bind:visibleFalse="visibleFalse"></cardVue>
     <warning_message class="warning_message" v-else></warning_message>
-    <div class="btn_nextback_wrapper" :class="{'delete': searchQuery != ''}">
+    <div class="btn_nextback_wrapper" :class="{'delete': searchQuery != ''}" v-if="load">
       <button class="btn__back" @click="prevPage" :disabled="pageNumber==0">&lt;- Вернуться</button>
       <button class="btn__next" @click="nextPage" :disabled="pageNumber > pages -2">Дальше -></button>
       <span></span>
@@ -34,6 +34,7 @@ export default {
       pageCount: 1,
       pageNumber: 0,
       pages: 0,
+      load: false,
       showNext: true,
     }
   },
@@ -59,9 +60,14 @@ export default {
       },
     async fetchPosts() {
       axios
-        .get('http://localhost:8081/posts')
+        .get('http://localhost:8085/posts')
         .then((response) => {     
           this.posts = response.data.reverse() 
+          if (this.posts == 0) {
+            this.load = false
+          } else {
+            this.load = true
+          }
           this.pages = Math.ceil(this.posts.length/5);
         })
         .catch(console.log('Ошибка в api запросе'))

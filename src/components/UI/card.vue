@@ -40,6 +40,21 @@ export default {
 	src: url(@/components/UI/font/proximanova_bold.otf); 
 }
 
+
+@keyframes slide-top-block {
+  from {
+    margin-bottom: 50%;
+    opacity: 0;
+    /* margin-top: -50%; */
+  }
+  to {
+    margin-bottom: 0%;
+    opacity: 1;
+    /* margin-top: 50px; */
+  }
+}
+
+
 .card-block {
     width: 40vw;
     height: inherit;
@@ -47,19 +62,22 @@ export default {
     padding: 30px 80px;
     border: 2px solid black;
     border-radius: 25px;
-    animation: opacity 1s ease-in-out;
+    /* animation: opacity 1s ease-in; */
     /*Удалить при испоьлзовании в проекте*/
     margin-top: 50px;
+    animation: opacity 2s; 
 }
 
-/*  .card-block:nth-child(even) {
-    animation: slide-left 2s;
-}
+/*   .card-block:nth-child(1) {
+    animation: opacity 10s !important;
+} */
 
-.card-block:nth-child(odd) {
+/* .card-block:nth-child(odd) {
     animation: slide-left 2s;
 } 
  */
+
+
 .card-body_h1 {
     color: black;
     text-align: left;

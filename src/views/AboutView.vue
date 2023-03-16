@@ -1,6 +1,6 @@
 <template>
+  <navbar_only_to_home></navbar_only_to_home>
   <div class="about">
-    <navbar_only_to_home></navbar_only_to_home>
     <div class="header">
       <img src="@/components/UI/img/face.jpg" alt="" class="person-image">
     </div>
@@ -71,6 +71,28 @@ body {
   }
 }
 
+@keyframes slide-top-blocks {
+  from {
+    margin-top: -200%
+  }
+  to {
+    margin-top: 0%
+  }
+}
+
+@keyframes slide-right-stick {
+  from {
+    height: 0px;
+    margin-top: -30px;
+    margin-bottom: -25px;
+  }
+  to {
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+}
+
 @font-face {
 	font-family: 'DinPro'; 
 	src: url(@/components/UI/font/dinpro.otf); 
@@ -82,7 +104,7 @@ body {
 }
 
 .about {
-  animation: opacity 0s;
+  animation: opacity 1s;
 }
 
 .header {
@@ -123,6 +145,7 @@ body {
   height: 20px;
   margin-bottom: 15px;
   background-color: black;
+  animation: opacity .5s;
 }
 
 .card-block__about {
@@ -133,6 +156,8 @@ body {
     border: 2px solid black;
     border-radius: 25px;
     margin-bottom: 15px;
+    /* animation: slide-top-blocks 1.5s;
+    animation-delay: 1.5s;  */
 }
 
 .card-body_p__about {
@@ -149,10 +174,6 @@ body {
 .card-text__about {
   font-size: 1.1rem;
   text-align: justify;
-}
-
-.navbar_to_home {
-  animation: slideInLeft .7s ;
 }
 
 @media screen and (max-width: 1000px) {

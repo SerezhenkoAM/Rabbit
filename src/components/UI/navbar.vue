@@ -5,7 +5,7 @@
         <router-link class="nav-link" to="/about"><img class="navbar-nav_item navbar-nav_item__about" src="@/components/UI/img/info.svg" alt="Писатель_инфо" @click="toUp()"></router-link>
     </div>
     <form @submit.prevent>
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
             <input type="number" @keyup.esc="openSearch()" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
         </transition>
     </form>
@@ -35,13 +35,10 @@ export default {
         reloadPage() {
             window.location.reload()
         },
-        toUp() {
-            window.scrollTo(0,0);
-        },
+
     },
     watch: {
-        searchVisible() {
-        }
+
     }
 }
 </script>
@@ -61,15 +58,6 @@ export default {
         padding: 0;
         top: 25%;
         height: 350px;
-    }
-}
-
-@keyframes test {
-    from {
-        padding-bottom: 30px
-    }
-    to {
-        padding-bottom: 0px
     }
 }
 
@@ -159,6 +147,7 @@ export default {
     animation: fade 0.3s; 
     top: 3%;
     left: 30%;
+    z-index: 9999; 
 }
 
 .navbar-input::-webkit-outer-spin-button,
@@ -179,12 +168,15 @@ export default {
 @media screen and (max-width: 1000px) { 
 
     .fade-enter-from {
-        transform: translateX(-1000px);
+        /* transform: translateX(-1000px); */
+        transform: translateY(-50px);
+        margin-top: 0px;
         opacity: 0;
     }
 
     .fade-enter-to {
-        transform: translateX(0px);
+        transform: translateY(0px);
+        margin-top: 0px;
         opacity: 1;
     }
 
@@ -193,12 +185,13 @@ export default {
     }
 
     .fade-leave-from {
-        transform: translateX(0px);
+        transform: translateY(0px);
+        margin-top: 0px;
         opacity: 1;
     }
 
     .fade-leave-to {
-        transform: translateX(1000px);
+        transform: translateY(-35px);
         opacity: 0;
     }
 
@@ -219,15 +212,17 @@ export default {
     }
 
     .navbar-input {
+        position: absolute;
         margin: 10px auto;
         font-size: 20px;
         display: block;
         border: 2px solid black;
         border-radius: 10px;
         padding: 10px;
-        top: 18%;
+        top: 120px;
         left: 23%;
         width: 50vw;
+        animation: search-opacity .7s;
     }
 
     .nav-button {
