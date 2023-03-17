@@ -6,7 +6,7 @@
     </div>
     <form @submit.prevent>
         <transition name="fade" mode="out-in">
-            <input type="number" @keyup.esc="openSearch()" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
+            <input type="number" :disabled="notOpen" @keyup.esc="openSearch()" class="navbar-input" v-if="visible" placeholder="Найти запись №" @input="inputdata()" v-model="find"/>
         </transition>
     </form>
 </template>
@@ -15,6 +15,7 @@ export default {
     name: 'navbar-element',
     props: {
         searchVisible: Boolean,
+        notOpen: Boolean,
     },
     data() {
         return {

@@ -1,6 +1,7 @@
 <template>
   <div class="home" @click="close_esc">
-    <navbar @search="abc" v-bind:searchVisible="searchVisible"></navbar>
+    <navbar @search="abc" v-bind:searchVisible="searchVisible" v-bind:notOpen="notOpen"></navbar>
+    <warning_message_none v-if="noneBlogs"></warning_message_none>
     <cardVue class="cardVue" v-bind:posts="searchedPosts" v-if="searchedPosts" v-bind:visibleFalse="visibleFalse"></cardVue>
     <warning_message class="warning_message" v-else></warning_message>
     <div class="btn_nextback_wrapper" :class="{'delete': searchQuery != ''}" v-if="load">
@@ -16,13 +17,15 @@
 import axios from 'axios'
 import warning_message from '@/components/UI/warning_message.vue';
 import cardVue from '@/components/UI/card.vue';
-import navbar from "@/components/UI/navbar.vue"
+import navbar from '@/components/UI/navbar.vue';
+import warning_message_none from '@/components/UI/warning_message_none.vue';
 export default {
   name: 'HomeView',
   components: {
     cardVue,
     navbar,
-    warning_message
+    warning_message,
+    warning_message_none,
   },
  
   data() {
@@ -36,6 +39,8 @@ export default {
       pages: 0,
       load: false,
       showNext: true,
+      noneBlogs: false,
+      notOpen: false,
     }
   },
   methods: {
@@ -63,14 +68,20 @@ export default {
         .get('http://localhost:8085/posts')
         .then((response) => {     
           this.posts = response.data.reverse() 
-          if (this.posts == 0) {
+          if (this.posts.length == 0) {
             this.load = false
+            this.noneBlogs = true
           } else {
             this.load = true
           }
           this.pages = Math.ceil(this.posts.length/5);
         })
-        .catch(console.log('Ошибка в api запросе'))
+        .catch(() => {
+          if (this.posts.length == 0) {
+            this.noneBlogs = true
+            this.notOpen = true
+          }
+        })
     } 
   }, 
   computed: {
