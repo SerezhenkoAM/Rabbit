@@ -8,7 +8,6 @@
 <script>
 export default {
     name: "navbar_only_to_home",
-
 }
 </script>
 <style>
@@ -24,7 +23,7 @@ export default {
 
 
 @keyframes height2 {
-    from{
+    from {
         height: 350px;
         padding: 0;
         top: 25%;
@@ -39,23 +38,6 @@ export default {
 
     }
 }
-
-/* @keyframes height {
-    from{
-        height: 13px;
-        height: 100px;
-        top: 50%;
-        padding-top: 20px;
-        height: 65px;
-
-    }
-    to {
-        height: 350px;
-        padding: 0;
-        top: 25%;
-        height: 350px;
-    }
-} */
 
 @keyframes opacity2 {
     from {
@@ -115,7 +97,6 @@ export default {
     }
 
     .navbar-nav-to-home_item__search {
-        /* display: none; */
         animation: none;
     }
 
@@ -143,4 +124,5 @@ export default {
         margin: 0 auto;
     }
 }
+
 </style>

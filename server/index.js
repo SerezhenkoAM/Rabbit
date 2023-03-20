@@ -17,10 +17,10 @@ app.get('/status', (req,res) => {
 
 var connection = mysql.createConnection({
     connectionLimit : 100,
-    host     : 'localhost',
-    user     : 'root',
+    host     : '',
+    user     : '',
     password : '',
-    database : 'blog'
+    database : ''
   });
 
 connection.connect();
@@ -31,17 +31,10 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 });
 
 app.get('/posts', (req,res) => {
-    connection.query('SELECT * FROM `post`', function (error, results, fields) {
+    connection.query('SELECT * FROM ``', function (error, results, fields) {
         if (error) throw error;
         res.send(results)
     })
 })
 
-
-
-/* connection.end(() => {
-    console.log('База данных сброшена')
-});
- */
-
-app.listen(PORT, () => console.log("СЕРВЕР ПОДНЯТ НА: localhost:" + PORT));
+app.listen(PORT, () => console.log(PORT));

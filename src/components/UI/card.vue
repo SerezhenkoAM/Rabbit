@@ -14,21 +14,9 @@ export default {
     props: {
         posts: Array,
     } ,
-    
 }
 </script>
-
 <style> 
-
-@keyframes opacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 
 @font-face {
 	font-family: 'DinPro'; 
@@ -40,20 +28,26 @@ export default {
 	src: url(@/components/UI/font/proximanova_bold.otf); 
 }
 
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 @keyframes slide-top-block {
   from {
     margin-bottom: 50%;
     opacity: 0;
-    /* margin-top: -50%; */
   }
   to {
     margin-bottom: 0%;
     opacity: 1;
-    /* margin-top: 50px; */
+
   }
 }
-
 
 .card-block {
     width: 40vw;
@@ -62,21 +56,10 @@ export default {
     padding: 30px 80px;
     border: 2px solid black;
     border-radius: 25px;
-    /* animation: opacity 1s ease-in; */
     /*Удалить при испоьлзовании в проекте*/
     margin-top: 50px;
     animation: opacity 2s; 
 }
-
-/*   .card-block:nth-child(1) {
-    animation: opacity 10s !important;
-} */
-
-/* .card-block:nth-child(odd) {
-    animation: slide-left 2s;
-} 
- */
-
 
 .card-body_h1 {
     color: black;
@@ -109,7 +92,6 @@ export default {
     .card-block {
         padding: 20px 60px;
         width: 70%;
-
     }
 }
 
@@ -125,7 +107,6 @@ export default {
     .card-block {
         padding: 20px 10vw;
         width: 70%;
-
     }
 }
 

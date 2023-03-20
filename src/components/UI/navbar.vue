@@ -36,6 +36,9 @@ export default {
         reloadPage() {
             window.location.reload()
         },
+        toUp() {
+            window.scrollTo(0,0)
+        }
 
     },
     watch: {
@@ -46,7 +49,7 @@ export default {
 <style>
 
 @keyframes height {
-    from{
+    from {
         height: 13px;
         height: 100px;
         top: 58%;
@@ -72,32 +75,32 @@ export default {
 }
 
 .fade-enter-from {
-        transform: translate(0,-200%);
-        opacity: 0;
-    }
+    transform: translate(0,-200%);
+    opacity: 0;
+}
 
-    .fade-enter-to {
-        transform: translate(0,0);
-        opacity: 1;
-    }
+.fade-enter-to {
+    transform: translate(0,0);
+    opacity: 1;
+}
 
-    .fade-enter-active {
-        transition: all 0.4s;
-    }
+.fade-enter-active {
+    transition: all 0.4s;
+}
 
-    .fade-leave-from {
-        transform: translate(0,0);
-        opacity: 1;
-    }
+.fade-leave-from {
+    transform: translate(0,0);
+    opacity: 1;
+}
 
-    .fade-leave-to {
-        transform: translate(0,-200%);
-        opacity: 0;
-    }
+.fade-leave-to {
+    transform: translate(0,-200%);
+    opacity: 0;
+}
 
-    .fade-leave-active {
-     transition: all 0.4s; 
-    }
+.fade-leave-active {
+    transition: all 0.4s; 
+}
 
 
 .navbar-nav {
@@ -167,9 +170,7 @@ export default {
 }
 
 @media screen and (max-width: 1000px) { 
-
     .fade-enter-from {
-        /* transform: translateX(-1000px); */
         transform: translateY(-50px);
         margin-top: 0px;
         opacity: 0;
@@ -197,7 +198,7 @@ export default {
     }
 
     .fade-leave-active {
-    transition: all 0.5s;
+        transition: all 0.5s;
     }
 
     .navbar-nav { 
@@ -236,6 +237,5 @@ export default {
         margin: 0 auto;
     }
 }
-
 
 </style>

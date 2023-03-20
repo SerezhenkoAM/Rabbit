@@ -9,6 +9,7 @@ export default {
 }
 </script>
 <style>
+
 .warning_none_msg {
     font-style: normal;
     font-weight: 400;
@@ -24,7 +25,6 @@ export default {
 }
 
 @media screen and (max-width: 1300px) {
-    
     .warning_none_wrap {
         display: block;  
         width: 70%; 
@@ -38,18 +38,16 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-        .warning_none_wrap {
+    .warning_none_wrap {
         display: block;  
         width: 70%; 
         margin: 0 auto;
         margin-top: 30vh;
     }
-        .warning_none_msg {
+    .warning_none_msg {
         letter-spacing: 0.3em;
         font-size: 25px;
     }
 }
-
-
 
 </style>

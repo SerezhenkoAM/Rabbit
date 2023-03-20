@@ -65,7 +65,7 @@ export default {
       },
     async fetchPosts() {
       axios
-        .get('http://localhost:8085/posts')
+        .get('?')
         .then((response) => {     
           this.posts = response.data.reverse() 
           if (this.posts.length == 0) {
@@ -104,6 +104,7 @@ export default {
 </script>
 
 <style>
+
 @font-face {
 	font-family: 'DinPro'; 
 	src: url(@/components/UI/font/dinpro.otf); 
@@ -150,6 +151,7 @@ export default {
   z-index: 1;
   transition: all 0.3s ease-out;
 }
+
 .btn__back:hover {
   color: black;
   cursor: pointer;
@@ -175,43 +177,43 @@ export default {
 
 @media screen and (max-width: 1000px) {
   .btn__next {
-  box-shadow: inset 0 0 white;
-}
+    box-shadow: inset 0 0 white;
+  }
 
-.btn__next:hover {
-  box-shadow: none;
-  cursor: none;
-  color: black;
-}
+  .btn__next:hover {
+    box-shadow: none;
+    cursor: none;
+    color: black;
+  }
 
-.btn__back {
-  position: relative;
-  background: rgb(255, 255, 255);
-  z-index: none;
-  transition: none;
-}
-.btn__back:hover {
-  color: black;
-  cursor: pointer;
-}
+  .btn__back {
+    position: relative;
+    background: rgb(255, 255, 255);
+    z-index: none;
+    transition: none;
+  }
+  .btn__back:hover {
+    color: black;
+    cursor: pointer;
+  }
 
-.btn__back::after {
-  content: " ";
-  position: absolute;
-  height: 100%;
-  width: 0;
-  background: white;
-  color: black;
-  right: 0;
-  top: 0;
-  border-radius: 5px;
-  z-index: -1;
-  transition: none;
-}
+  .btn__back::after {
+    content: " ";
+    position: absolute;
+    height: 100%;
+    width: 0;
+    background: white;
+    color: black;
+    right: 0;
+    top: 0;
+    border-radius: 5px;
+    z-index: -1;
+    transition: none;
+  }
 
-.btn__back:hover:after {
-  width: 100%;
-}
+  .btn__back:hover:after {
+    width: 100%;
+  }
 }
 
 

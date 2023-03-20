@@ -1,24 +1,14 @@
-# blog
+# Проект Rabbit
+Из себя проект представляет личный блог, в котором пользователь может прочитать посты, найти интересующий пост, а также посмотреть информацию об авторе. Автор в свою очередеь имеет возможность создавать, удалять, редактировать посты путем взаимодейcтвия с бд. Изменять и добавлять информацию о себе во вкладке About.
 
-## Project setup
-```
-npm install
-```
+Проект создан на основе таких фреймворков как:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+* Vue - front-end
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* Express - back-end
 
-### Lints and fixes files
-```
-npm run lint
-```
+Также была использована база данных: 
+* MySQL
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Сайт польностью протестирован и адаптирован под телефоны и планшеты.
+Также сайт был протестирован на производительность. 
